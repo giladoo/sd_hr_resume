@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="document_type_01" model="sd_hr_resume.document_type">
+            <field name="name">ID Card</field>
+            <field name="auto_create">True</field>
+        </record>
+
+        <record id="document_type_02" model="sd_hr_resume.document_type">
+            <field name="name">Birth Certificate</field>
+            <field name="auto_create">True</field>
+        </record>
+        
+        <record id="document_type_03" model="sd_hr_resume.document_type">
+            <field name="name">Driving License</field>
+        </record>
+        
+        <record id="document_type_04" model="sd_hr_resume.document_type">
+            <field name="name">Military Card</field>
+            <field name="auto_create">True</field>
+        </record>
+        
+        <record id="document_type_05" model="sd_hr_resume.document_type">
+            <field name="name">Educations</field>
+            <field name="auto_create">True</field>
+        </record>
+        
+        <record id="document_type_06" model="sd_hr_resume.document_type">
+            <field name="name">Experience</field>
+            <field name="auto_create">True</field>
+        </record>
+        
+        <record id="document_type_07" model="sd_hr_resume.document_type">
+            <field name="name">Awards</field>
+        </record>
+        
+        <record id="document_type_08" model="sd_hr_resume.document_type">
+            <field name="name">References</field>
+        </record>
+        
+        <record id="document_type_09" model="sd_hr_resume.document_type">
+            <field name="name">Training</field>
+            <field name="auto_create">True</field>
+        </record>
+
+        <record id="document_type_10" model="sd_hr_resume.document_type">
+            <field name="name">Insurance All</field>
+            <field name="auto_create">True</field>
+        </record>
+
+        <record id="document_type_11" model="sd_hr_resume.document_type">
+            <field name="name">Insurance Consolidated</field>
+            <field name="auto_create">True</field>
+        </record>
+
+        <record id="document_type_12" model="sd_hr_resume.document_type">
+            <field name="name">Resume (English)</field>
+            <field name="auto_create">True</field>
+        </record>
+
+        <record id="document_type_13" model="sd_hr_resume.document_type">
+            <field name="name">Resume (Persian)</field>
+            <field name="auto_create">True</field>
+        </record>
+
+        <record id="document_type_13" model="sd_hr_resume.document_type">
+            <field name="name">Recruitment Form</field>
+            <field name="auto_create">True</field>
+        </record>
+        
+        <record id="document_type_90" model="sd_hr_resume.document_type">
+            <field name="name">Others</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_sd_hr_resume_records_user,sd_hr_resume.records,model_sd_hr_resume_records,group_sd_hr_resume_users,1,0,0,0
+access_sd_hr_resume_records_admins,sd_hr_resume.records,model_sd_hr_resume_records,group_sd_hr_resume_admins,1,1,1,1
+
+

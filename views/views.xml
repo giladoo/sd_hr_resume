@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sd_hr_resume_records_view_form" model="ir.ui.view">
+        <field name="name">sd_hr_resume.records.view.form</field>
+        <field name="model">sd_hr_resume.records</field>
+        <field name="arch" type="xml">
+            <form create="0" delete="0">
+                <header>
+                <div class="oe_button_box">
+                </div>
+<!--                    <field name="state" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}" invisible="0"/>-->
+
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="1" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+
+                        </group>
+                        <group>
+                            <field name="job_title"/>
+                            <field name="department_id" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                            <field name="project" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                        </group>
+                    </group>
+                    <div class="border my-2"></div>
+                    <group>
+                        <field name="education" />
+                        <field name="experience" />
+                        <field name="projects" />
+                        <field name="capabilities" />
+                        <field name="qualifications" />
+                        <field name="software" />
+                        <field name="trainings" />
+                        <field name="awards" />
+                    </group>
+<!--                    add domain based on visibility field on document-->
+<!--                    <field name="document_ids">-->
+<!--                        <tree edit="0" editable="top">-->
+<!--                            <field name="document_type"/>-->
+<!--                            <field name="attachments"  widget="many2many_binary"/>-->
+<!--                        </tree>-->
+<!--                    </field>-->
+
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_ids" options="{'open_records': True}" readonly="0"
+                           string="Chatter"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="sd_hr_resume_records_view_tree" model="ir.ui.view">
+        <field name="name">sd_hr_resume.records.view.tree</field>
+        <field name="model">sd_hr_resume.records</field>
+        <field name="arch" type="xml">
+            <tree create="0" delete="0">
+                <field name="employee_id" />
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="sd_hr_resume_records_view_search" model="ir.ui.view">
+        <field name="name">sd_hr_resume.records.view.search</field>
+        <field name="model">sd_hr_resume.records</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="employee_id" />
+                <field name="experience" />
+                <field name="projects" />
+                <field name="capabilities" />
+                <field name="qualifications" />
+                <field name="software" />
+                <field name="trainings" />
+                <field name="awards" />
+            </search>
+        </field>
+    </record>
+
+
+    <record id="all_records_action" model="ir.actions.act_window">
+        <field name="name">SD Resumes</field>
+        <field name="res_model">sd_hr_resume.records</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="records_menu"
+              name="Resume Records"
+              parent="hr.menu_hr_employee_payroll"
+              sequence="2"
+              action="all_records_action"/>
+
+
+</odoo>

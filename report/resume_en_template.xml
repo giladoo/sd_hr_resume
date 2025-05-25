@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="resume_header">
+            <div t-attf-class="row pt-3 {{'ipac_cv_header_bw' if report_color == 'bw' else 'ipac_cv_header'}} ">
+                <div t-if="lang != 'fa_IR'" class="col-4"></div>
+                <div t-attf-class="col-7 mx-5 {{text_color}} font-weight-bold">
+                    <div class="mt-1 h1 " t-esc="o.name_cv"></div>
+                    <div class="pt-2 mx-5 h3" t-esc="o.job_title"></div>
+                </div>
+            </div>
+
+        </template>
+
+        <template id="resume_page_1">
+            <div class="row " style="height: 1230px;">
+                <div t-attf-class="col-4 px-2 pt-2 {{text_color}} {{ipac_bg_1}}">
+                    <div class="border my-4 mx-4  rounded-pill ipac_cv_contact">
+                        <div t-attf-class="h3 text-center my-0 py-1 {{text_color}}">Contact</div>
+                    </div>
+                    <div class="ps-3 ">
+                        <div class="row h3 mb-0 mx-2 text-center">
+                            <div t-attf-class="ipac_cv_icons {{ipac_bg_2}}">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="ms-3 text-start">Phone</div>
+                        </div>
+                        <div class="ms-5" t-esc="o.mobile_phone"></div>
+
+                        <div class="row h3 mt-5 mx-2 mb-0 text-center">
+                            <div t-attf-class="ipac_cv_icons {{ipac_bg_2}}">
+                                <i class="fa fa-envelope "></i>
+                            </div>
+                            <div class="ms-3 text-start">Email</div>
+                        </div>
+                        <div class="ms-5" t-esc="o.work_email"></div>
+
+                        <div class="row h3 mt-5 mx-2 mb-1 text-center">
+                            <div t-attf-class="ipac_cv_icons {{ipac_bg_2}}">
+                                <i class="fa fa-map-marker "></i>
+                            </div>
+                            <div class="ms-3 text-start">Address</div>
+                        </div>
+                        <div class="ms-5" t-esc="o.address_id.name"></div>
+                    </div>
+                    <div class="ps-3 mt-5" style="direction: ltr; text-align: left;">
+                        <div class="border my-4 mx-4 rounded-pill ipac_cv_contact">
+                            <div t-attf-class="h3  {{text_color}} text-center  my-0 py-1">Language</div>
+                        </div>
+                        <t t-foreach="languages[o.id]" t-as="skill">
+                            <div class="mx-2 mb-2">
+                                <div class="row mx-0">
+                                    <div class="col-8 p-0 h6" t-esc="skill['name']"></div>
+                                    <div class="col-4 p-0 small" t-esc="skill['level']"></div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+
+                <div class="col-8 pt-2 ps-1 ">
+                    <!--                    Education-->
+                    <div t-if="educations[o.id]"
+                         t-attf-class="col-5 py-1 my-4 rounded-pill ipac_cv_contact {{ipac_bg_1}}">
+                        <div t-attf-class="h3 text-center  {{text_color}} py-1 my-0 ">Education</div>
+                    </div>
+                    <t t-foreach="educations[o.id]" t-as="line">
+                        <div class="mx-4 mb-3">
+                            <div class="row">
+                                <div class="col-8 p-0 h6 font-weight-bold" t-esc="line['name']"></div>
+                                <div t-if="line['date_start']" class="col-4 p-0 small"
+                                     t-esc="line['date_start'] + ' - ' + line['date_end']">
+                                </div>
+                            </div>
+                            <div class="ms-3 small" t-foreach="line['description']" t-as="desc_line"
+                                 t-esc="desc_line"></div>
+                        </div>
+                    </t>
+
+                    <div t-if="experiences_1[o.id]">
+                        <div class="ipac_pagebreak_avoid">
+                            <div t-attf-class="col-4 py-1 my-4 rounded-pill ipac_cv_contact {{ipac_bg_1}}">
+                                <div t-attf-class="h3 my-0 py-1 text-center {{text_color}}">Work Experience</div>
+                            </div>
+                        </div>
+                        <t t-foreach="experiences_1[o.id]" t-as="line">
+                            <div class="ms-3 ipac_pagebreak_avoid">
+                                <div class="row mx-0 ">
+                                    <div class="col mx-0 p-0 " t-esc="line['name']"></div>
+                                    <!--                                    <div class="ml-5" t-esc="line['date_start'] + ' - ' + line['date_end']"></div>-->
+                                </div>
+                                <div class="ms-3 ipac_pagebreak_avoid" t-foreach="line['description']" t-as="desc_line"
+                                     t-esc="desc_line"></div>
+                            </div>
+                        </t>
+                    </div>
+
+                </div>
+            </div>
+            <div style="page-break-after:always"></div>
+
+        </template>
+
+
+        <template id="resume_page_2">
+            <div class="">
+                <div class="col-12">
+
+                    <div t-if="projects_2[o.id]">
+                        <div t-if="not projects_1[o.id]" class="ipac_pagebreak_avoid">
+                            <div t-attf-class="col-4 py-1 my-4  rounded-pill ipac_cv_contact {{ipac_bg_1}}">
+                                <div t-attf-class="h3 text-center   {{text_color}} my-0 py-1">Projects</div>
+                            </div>
+                        </div>
+                        <t t-foreach="projects_2[o.id]" t-as="line">
+                            <div class="ms-5 ipac_pagebreak_avoid">
+                                <div class="row mx-0 ">
+                                    <div class="col h6 p-0 " t-esc="line['name']" style="line-height:2;"></div>
+                                    <!--                                    <div class="ms-5" t-esc="line['date_start'] + ' - ' + line['date_end']"></div>-->
+                                </div>
+                                <div class="ms-3 ipac_pagebreak_avoid" t-foreach="line['description']" t-as="desc_line"
+                                     t-esc="desc_line"></div>
+                            </div>
+                        </t>
+                    </div>
+
+                    <div t-if="capabilities_2[o.id]">
+                        <div t-if="not capabilities_1[o.id]" class="ipac_pagebreak_avoid">
+                            <div t-attf-class="col-4 py-1 my-4  rounded-pill ipac_cv_contact {{ipac_bg_1}}">
+                                <div t-attf-class="h3 text-center   {{text_color}} my-0 py-1">Capabilities</div>
+                            </div>
+                        </div>
+                        <t t-foreach="capabilities_2[o.id]" t-as="skill">
+                            <div class="ms-5 ipac_pagebreak_avoid">
+                                <div class="row mx-0">
+                                    <div class="col-9 h6 p-0" t-esc="skill['name']"></div>
+                                    <div class="col-3 p-0" t-esc="skill['level']"></div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+
+                    <div t-if="qualifications[o.id]">
+                        <div class="ipac_pagebreak_avoid">
+                            <div t-attf-class="col-4 my-4 rounded-pill ipac_cv_contact {{ipac_bg_1}}">
+                                <div t-attf-class="h3 my-0 py-1 text-center {{text_color}}">Qualifications</div>
+                            </div>
+                        </div>
+                        <t t-foreach="qualifications[o.id]" t-as="line">
+                            <div class="ms-5 ipac_pagebreak_avoid">
+                                <div class="row mx-0">
+                                    <div class="col-9 h6 p-0 font-weight-bold" t-esc="line['name']"></div>
+                                    <div class="col-3 p-0 small"
+                                         t-esc="line['date_start'] + ' - ' + line['date_end'] if line['date_end'] else line['date_start']"></div>
+                                </div>
+                                <div class="ms-3 ipac_pagebreak_avoid" t-foreach="line['description']" t-as="desc_line"
+                                     t-esc="desc_line"></div>
+                            </div>
+                        </t>
+                    </div>
+
+                    <div t-if="software[o.id]">
+                        <div class="ipac_pagebreak_avoid">
+                            <div t-attf-class="col-4 my-4 rounded-pill ipac_cv_contact {{ipac_bg_1}} ">
+                                <div t-attf-class="h3 my-0 py-1 text-center ipac_cv_contact {{text_color}}">Software
+                                </div>
+                            </div>
+                        </div>
+                        <t t-foreach="software[o.id]" t-as="skill">
+                            <div class="ms-5 ipac_pagebreak_avoid">
+                                <div class="row mx-0">
+                                    <div class="col-9 h6 p-0" t-esc="skill['name']"></div>
+                                    <div class="col-3 p-0" t-esc="skill['level']"></div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+
+                    <div t-if="trainings[o.id]">
+                        <div class="ipac_pagebreak_avoid">
+                            <div t-attf-class="col-4 my-4 rounded-pill ipac_cv_contact {{ipac_bg_1}}">
+                                <div t-attf-class="h3 text-center {{text_color}} my-0 py-1">Training</div>
+                            </div>
+
+                        </div>
+                        <t t-foreach="trainings[o.id]" t-as="skill">
+                            <div class="ms-5 ipac_pagebreak_avoid">
+                                <div class="row mx-0">
+                                    <div class="col-9 h6 p-0" t-esc="skill['name']"></div>
+                                    <div class="col-3 p-0" t-esc="skill['level']"></div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+
+                    <div t-if="awards[o.id]" class="ipac_pagebreak_avoid">
+                        <div t-attf-class="col-4 py-1 my-4  rounded-pill ipac_cv_contact {{ipac_bg_1}}">
+                            <div t-attf-class="h3 text-center   {{text_color}} my-0 py-1">Awards</div>
+                        </div>
+                        <t t-foreach="awards[o.id]" t-as="skill">
+                            <div class="ms-5 ipac_pagebreak_avoid">
+                                <div class="row mx-0">
+                                    <div class="col-9 h6 p-0" t-esc="skill['name']"></div>
+                                    <div class="col-3 p-0" t-esc="skill['level']"></div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+
+        </template>
+
+        <!-- ############################  INTERNAL Daily Report   ############################ -->
+
+        <template id="print_resume">
+            <t t-set="text_color" t-value="'text-dark' if report_color == 'bw' else 'text-white'"/>
+            <t t-set="ipac_bg_1" t-value="'bg-200 border ' if report_color == 'bw' else 'ipac_bg_1'"/>
+            <t t-set="ipac_bg_2" t-value="'border border-dark' if report_color == 'bw' else 'ipac_bg_2'"/>
+            <div class="header">
+                <t t-call="sd_hr_resume.resume_header"/>
+            </div>
+            <div class="page">
+                <t t-call="sd_hr_resume.resume_page_1"/>
+                <t t-call="sd_hr_resume.resume_page_2"/>
+            </div>
+            <div class="footer p-0">
+                <div class="text-center x-small p-0">
+                    <span class="page"></span>
+                    /
+                    <span class="topage"></span>
+                </div>
+
+            </div>
+        </template>
+
+        <!-- ############################  GENERAL   ######################################### -->
+
+        <template id="resume_en_template">
+            <t t-foreach="docs" t-as="o">
+<!--                <t t-call="web.basic_layout" t-lang="lang">-->
+                <t t-call="web.basic_layout" t-lang="'en_US'">
+                    <!--                    <t t-call="sd_hr_resume.resume_header"/>-->
+                    <div class="page1">
+<!--                        <t t-set="lang" t-value="o.env.context.get('lang')"/>-->
+                        <t t-set="lang" t-value="'en_US'"/>
+
+                        <t t-call="sd_hr_resume.print_resume" t-lang="'en_US'"/>
+                    </div>
+                </t>
+
+            </t>
+        </template>
+
+        <template id="resume_en_template_bw">
+
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout" t-lang="lang">
+                    <!--                    <t t-call="sd_hr_resume.resume_header"/>-->
+                    <div class="page1">
+<!--                        <t t-set="lang" t-value="o.env.context.get('lang')"/>-->
+                        <t t-set="lang" t-value="'en_US'"/>
+                        <t t-call="sd_hr_resume.print_resume" t-lang="lang"/>
+                    </div>
+                </t>
+
+            </t>
+        </template>
+    </data>
+</odoo>
