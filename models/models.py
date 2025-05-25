@@ -6,11 +6,14 @@ class SdHrResumeRecords(models.Model):
     _name = 'sd_hr_resume.records'
     _description = 'sd_hr_resume records'
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'employee_id'
 
     employee_id = fields.Many2one('hr.employee')
     job_title = fields.Char(related='employee_id.job_title')
     department_id = fields.Many2one(related='employee_id.department_id')
+    # department_id = fields.Many2one('hr.department', compute='_department_id', store=True)
     project = fields.Many2one(related='employee_id.project')
+    work_location_id = fields.Many2one(related='employee_id.work_location_id')
     education = fields.Text(translate=True)
     experience = fields.Text(translate=True)
     projects = fields.Text(translate=True)
@@ -21,4 +24,10 @@ class SdHrResumeRecords(models.Model):
     awards = fields.Text(translate=True)
 
     document_ids = fields.One2many(related='employee_id.document_ids',  domain="[('id', '=', False)]")
+
+    @api.depends('employee_id')
+    def _department_id(self):
+        for rec in self:
+            print(f'==========>>>>>>>>>>>>> {rec.employee_id}')
+            rec.department_id = rec.employee_id.department_id.id
 

@@ -22,6 +22,7 @@
                             <field name="job_title"/>
                             <field name="department_id" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
                             <field name="project" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
+                            <field name="work_location_id" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
                         </group>
                     </group>
                     <div class="border my-2"></div>
@@ -60,7 +61,9 @@
         <field name="arch" type="xml">
             <tree create="0" delete="0">
                 <field name="employee_id" />
-
+                <field name="department_id" />
+                <field name="project" />
+                <field name="work_location_id" />
             </tree>
         </field>
     </record>
@@ -79,6 +82,12 @@
                 <field name="software" />
                 <field name="trainings" />
                 <field name="awards" />
+                <field name="department_id" />
+                <field name="project" />
+                <field name="work_location_id" />
+                <group expand="0" string="Group By">
+<!--                    <filter string="Departments" name="departments" context="{'group_by': 'department_id'}"/>-->
+                </group>
             </search>
         </field>
     </record>
