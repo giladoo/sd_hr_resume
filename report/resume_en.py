@@ -63,6 +63,8 @@ class ReportSdHrResumeEn(models.AbstractModel):
         awards = {}
         languages = {}
         for doc in docs:
+            resume = resumes.search([('employee_id', '=', doc.id)])
+            print(f"OOOOOOOOOOOOOOOOO> resume:{resume}")
             educa = []
             exper = []
             proj = []
@@ -132,8 +134,20 @@ class ReportSdHrResumeEn(models.AbstractModel):
                                     'name': skill.skill_id.name,
                                     'level': skill.skill_level_id.name,
                                     })
-            if doc.resume_education and doc.resume_education.strip() != '':
-                resume_education = doc.resume_education.split('\n')
+
+            # if doc.resume_education and doc.resume_education.strip() != '':
+            #     resume_education = doc.resume_education.split('\n')
+            #     for record_name in resume_education:
+            #         educa_count += len(record_name) // 60 or 1
+            #         educa.append({'id': doc.id,
+            #                  'name': record_name,
+            #                  'description': '',
+            #                  'date_start': '',
+            #                  'date_end': '',
+            #                  })
+
+            if resume.education and resume.education.strip() != '':
+                resume_education = resume.education.split('\n')
                 for record_name in resume_education:
                     educa_count += len(record_name) // 60 or 1
                     educa.append({'id': doc.id,
@@ -143,8 +157,8 @@ class ReportSdHrResumeEn(models.AbstractModel):
                              'date_end': '',
                              })
 
-            if doc.resume_experience and doc.resume_experience.strip() != '':
-                resume_experience = doc.resume_experience.split('\n')
+            if resume.experience and resume.experience.strip() != '':
+                resume_experience = resume.experience.split('\n')
                 for record_name in resume_experience:
                     exper_count += len(record_name) // 60 or 1
                     exper.append({'id': doc.id,
@@ -153,8 +167,8 @@ class ReportSdHrResumeEn(models.AbstractModel):
                              'date_start': '',
                              'date_end': '',
                              })
-            if doc.resume_projects and doc.resume_projects.strip() != '':
-                resume_projects = doc.resume_projects.split('\n')
+            if resume.projects and resume.projects.strip() != '':
+                resume_projects = resume.projects.split('\n')
                 for record_name in resume_projects:
                     proj_count += len(record_name) // 80 or 1
                     proj.append({'id': doc.id,
@@ -163,8 +177,8 @@ class ReportSdHrResumeEn(models.AbstractModel):
                              'date_start': '',
                              'date_end': '',
                              })
-            if doc.resume_capabilities and doc.resume_capabilities.strip() != '':
-                resume_capabilities = doc.resume_capabilities.split('\n')
+            if resume.capabilities and resume.capabilities.strip() != '':
+                resume_capabilities = resume.capabilities.split('\n')
                 capab_count += len(resume_capabilities)
                 for record_name in resume_capabilities:
                     capab_count += len(record_name) // 80 or 1
@@ -172,8 +186,8 @@ class ReportSdHrResumeEn(models.AbstractModel):
                              'name': record_name,
                              'level': '',
                              })
-            if doc.resume_qualifications and doc.resume_qualifications.strip() != '':
-                resume_qualifications = doc.resume_qualifications.split('\n')
+            if resume.qualifications and resume.qualifications.strip() != '':
+                resume_qualifications = resume.qualifications.split('\n')
                 quali_count += len(resume_qualifications)
                 for record_name in resume_qualifications:
                     quali.append({'id': doc.id,
@@ -183,24 +197,24 @@ class ReportSdHrResumeEn(models.AbstractModel):
                              'date_end': '',
                              })
 
-            if doc.resume_software and doc.resume_software.strip() != '':
-                resume_software = doc.resume_software.split('\n')
+            if resume.software and resume.software.strip() != '':
+                resume_software = resume.software.split('\n')
                 soft_count += len(resume_software)
                 for record_name in resume_software:
                     soft.append({'id': doc.id,
                              'name': record_name,
                              'level': '',
                              })
-            if doc.resume_trainings and doc.resume_trainings.strip() != '':
-                resume_trainings = doc.resume_trainings.split('\n')
+            if resume.trainings and resume.trainings.strip() != '':
+                resume_trainings = resume.trainings.split('\n')
                 train_count += len(resume_trainings)
                 for record_name in resume_trainings:
                     train.append({'id': doc.id,
                              'name': record_name,
                              'level': '',
                              })
-            if doc.resume_awards and doc.resume_awards.strip() != '':
-                resume_awards = doc.resume_awards.split('\n')
+            if resume.awards and resume.awards.strip() != '':
+                resume_awards = resume.awards.split('\n')
                 award_count += len(resume_awards)
                 for record_name in resume_awards:
                     awar.append({'id': doc.id,
