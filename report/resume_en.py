@@ -57,7 +57,6 @@ class ReportSdHrResumeEn(models.AbstractModel):
     # ########################################################################################
     @api.model
     def _get_report_values(self, docids=None, data=None):
-        print(f">>>>>>>>>\n report: {self}  {self._name}")
         resumes = self.env['sd_hr_resume.records'].browse(docids)
         employee_ids = list([rec.employee_id.id for rec in resumes])
         docs = self.env['hr.employee'].browse(employee_ids)
@@ -88,7 +87,6 @@ class ReportSdHrResumeEn(models.AbstractModel):
         languages = {}
         for doc in docs:
             resume = resumes.search([('employee_id', '=', doc.id)])
-            print(f"OOOOOOOOOOOOOOOOO> resume:{resume}")
             educa = []
             exper = []
             proj = []
