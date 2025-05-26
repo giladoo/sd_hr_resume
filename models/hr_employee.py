@@ -11,6 +11,8 @@ class SdHrresumeEmployee(models.Model):
         if model_name == 'sd_hr_resume.records':
             resume = self.env[model_name].browse(self.id)
             name = resume.employee_id.name_cv if len(resume) == 1 else ''
+        elif model_name == 'hr.employee':
+            name = self.name_cv
         else:
             name = self.name_cv
         return f"IPAC_Resume_[{name}]"

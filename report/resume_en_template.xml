@@ -101,7 +101,6 @@
 
         </template>
 
-
         <template id="resume_page_2">
             <div class="">
                 <div class="col-12">
@@ -266,5 +265,13 @@
 
             </t>
         </template>
+
+        <template id="resume_en_template_bw_hr">
+            <t t-call="sd_hr_resume.resume_en_template_bw"/>
+        </template>
+        <template id="resume_en_template_hr">
+            <t t-call="sd_hr_resume.resume_en_template"/>
+        </template>
+
     </data>
 </odoo>

@@ -22,6 +22,29 @@ class ReportSdHrResumeEnBw(models.AbstractModel):
         return report.get_report_values(docids, data)
 
 # ########################################################################################
+class ReportSdHrResumeEnBwHr(models.AbstractModel):
+    _name = 'report.sd_hr_resume.resume_en_template_bw_hr'
+    _description = 'HR Resume'
+
+    @api.model
+    def _get_report_values(self, docids=None, data=None):
+        report = self.env['report.sd_hr_resume.resume_en_template']
+        data['report_color'] = 'bw'
+        docids = self.env['sd_hr_resume.records'].search([('employee_id', 'in', docids)]).ids
+        return report.get_report_values(docids, data)
+
+# ########################################################################################
+class ReportSdHrResumeEnHr(models.AbstractModel):
+    _name = 'report.sd_hr_resume.resume_en_template_hr'
+    _description = 'HR Resume'
+
+    @api.model
+    def _get_report_values(self, docids=None, data=None):
+        report = self.env['report.sd_hr_resume.resume_en_template']
+        docids = self.env['sd_hr_resume.records'].search([('employee_id', 'in', docids)]).ids
+        return report.get_report_values(docids, data)
+
+# ########################################################################################
 class ReportSdHrResumeEn(models.AbstractModel):
     _name = 'report.sd_hr_resume.resume_en_template'
     # _name = 'report.hr_employee.sd_hr_resume_en_report'
@@ -34,6 +57,7 @@ class ReportSdHrResumeEn(models.AbstractModel):
     # ########################################################################################
     @api.model
     def _get_report_values(self, docids=None, data=None):
+        print(f">>>>>>>>>\n report: {self}  {self._name}")
         resumes = self.env['sd_hr_resume.records'].browse(docids)
         employee_ids = list([rec.employee_id.id for rec in resumes])
         docs = self.env['hr.employee'].browse(employee_ids)

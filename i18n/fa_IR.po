@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-05-25 12:29+0000\n"
-"PO-Revision-Date: 2025-05-25 16:16+0330\n"
+"PO-Revision-Date: 2025-05-25 16:41+0330\n"
 "Last-Translator: Arash Homayounfar <homayounfar@msn.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgstr "رزومه BW"
 #. module: sd_hr_resume
 #: model:ir.actions.report,name:sd_hr_resume.sd_hr_resume_en_report
 msgid "IPAC Resume En"
-msgstr "رزومه رنگی\v"
+msgstr "رزومه رنگی"
 
 #. module: sd_hr_resume
 #: model:ir.model.fields,field_description:sd_hr_resume.field_sd_hr_resume_records__activity_exception_icon
