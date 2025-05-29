@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'HR Resume',
-    'version': '17.0.1.0.0',
+    'version': '17.0.1.0.2',
     'category': 'Human Resources',
     'summary': """ """,
     'author': 'Arash Homayounfar',
@@ -11,7 +11,7 @@
     'installable': True,
     'auto_install': False,
     'application': False,
-    'depends': ['base', 'hr', 'sd_projects', 'sd_hr_documents'],
+    'depends': ['base', 'hr', 'sd_hr', 'sd_projects', 'sd_hr_documents'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',

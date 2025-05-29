@@ -284,6 +284,7 @@ class ReportSdHrResumeEn(models.AbstractModel):
             awards[doc.id] = awar
             languages[doc.id] = sorted(langu, key=lambda x: x['name'])
         # print(f"#################\n docs: {docs}")
+        # return self.env['sd_hr.export'].generate_and_download('sd_hr_resume.records', docids, '0010' )
         return {
             'docs': docs,
             'doc_ids': employee_ids,

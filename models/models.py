@@ -12,6 +12,9 @@ class SdHrResumeRecords(models.Model):
     name = fields.Char(related='employee_id.name')
     job_title = fields.Char(related='employee_id.job_title')
     department_id = fields.Many2one(related='employee_id.department_id')
+    languages = fields.Text(compute='language_list', )
+    language_names = fields.Text(compute='language_list', )
+    language_skills = fields.Text(compute='language_list', )
     # department_id = fields.Many2one('hr.department', compute='_department_id', store=True)
     project = fields.Many2one(related='employee_id.project')
     work_location_id = fields.Many2one(related='employee_id.work_location_id')
@@ -34,4 +37,31 @@ class SdHrResumeRecords(models.Model):
     #     for rec in self:
     #         print(f'==========>>>>>>>>>>>>> {rec.employee_id}')
     #         rec.department_id = rec.employee_id.department_id.id
+    @api.depends('employee_id')
+    def language_list(self):
+        for rec in self:
+            langu = ''
+            langu_name = ''
+            langu_skill = ''
+            for skill in rec.employee_id.employee_skill_ids:
+                if skill.skill_type_id.name == 'Language':
+                    langu += f"{skill.skill_id.name:<20}{skill.skill_level_id.name}\n"
+                    langu_name += f"{skill.skill_id.name}\n"
+                    langu_skill += f"{skill.skill_level_id.name}\n"
+
+
+            rec.languages = langu
+            rec.language_names = langu_name
+            rec.language_skills = langu_skill
+
+    def generate_and_download(self,):
+        context = self.env.context
+        print(f"\n generate_and_download\n {context}")
+        model_name = context.get('model_name', False)
+        active_ids = context.get('active_ids', [])
+        variable_no = context.get('variable_no', False)
+        output_type = context.get('output_type', 'pdf')
+        print('\n>>>>>>>>>>>\n', model_name, active_ids, variable_no, output_type )
+        return self.env['sd_hr.export'].sudo().generate_and_download(model_name, active_ids, variable_no, output_type )
+
 
