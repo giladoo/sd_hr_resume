@@ -10,6 +10,7 @@ class SdHrResumeRecords(models.Model):
 
     employee_id = fields.Many2one('hr.employee')
     name = fields.Char(related='employee_id.name')
+    name_cv = fields.Char(related='employee_id.name_cv')
     job_title = fields.Char(related='employee_id.job_title')
     department_id = fields.Many2one(related='employee_id.department_id')
     languages = fields.Text(compute='language_list', )
@@ -56,12 +57,14 @@ class SdHrResumeRecords(models.Model):
 
     def generate_and_download(self,):
         context = self.env.context
-        print(f"\n generate_and_download\n {context}")
+        # print(f"\n generate_and_download\n {context}")
         model_name = context.get('model_name', False)
         active_ids = context.get('active_ids', [])
         variable_no = context.get('variable_no', False)
         output_type = context.get('output_type', 'pdf')
-        print('\n>>>>>>>>>>>\n', model_name, active_ids, variable_no, output_type )
-        return self.env['sd_hr.export'].sudo().generate_and_download(model_name, active_ids, variable_no, output_type )
+        file_prefix = context.get('file_prefix', 'File')
+        file_name = context.get('file_name', 'name')
+        # print('\n>>>>>>>>>>>\n', model_name, active_ids, variable_no, output_type )
+        return self.env['sd_hr.export'].sudo().generate_and_download(model_name, active_ids, variable_no, output_type, file_prefix,  file_name )
 
 
