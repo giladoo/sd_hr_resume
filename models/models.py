@@ -64,7 +64,8 @@ class SdHrResumeRecords(models.Model):
         output_type = context.get('output_type', 'pdf')
         file_prefix = context.get('file_prefix', 'File')
         file_name = context.get('file_name', 'name')
+        attach_docs = context.get('attach_docs', False)
         # print('\n>>>>>>>>>>>\n', model_name, active_ids, variable_no, output_type )
-        return self.env['sd_hr.export'].sudo().generate_and_download(model_name, active_ids, variable_no, output_type, file_prefix,  file_name )
+        return self.env['sd_hr.export'].sudo().generate_and_download(model_name, active_ids, variable_no, output_type, file_prefix,  file_name, attach_docs )
 
 
