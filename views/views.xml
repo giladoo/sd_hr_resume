@@ -14,7 +14,7 @@
                             context="{'model_name': 'sd_hr_resume.records', 'variable_no': '0010', 'active_ids': [id], 'output_type': 'pdf', 'file_prefix': 'IPAC_CV', 'file_name': ['name_cv', 'job_title'], 'attach_docs': True}"
                             type="object"  icon="fa-file-pdf-o"/>
                     <button string="Rsume BW" class="btn" name="generate_and_download"
-                            context="{'model_name': 'sd_hr_resume.records', 'variable_no': '0012', 'active_ids': [id], 'output_type': 'pdf', 'file_prefix': 'IPAC_CV', 'file_name': ['name_cv', 'job_title']}"
+                            context="{'model_name': 'sd_hr_resume.records', 'variable_no': '0011', 'active_ids': [id], 'output_type': 'pdf', 'file_prefix': 'IPAC_CV', 'file_name': ['name_cv', 'job_title']}"
                             type="object"  icon="fa-file-pdf-o"/>
 
                 </header>
