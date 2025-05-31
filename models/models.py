@@ -16,6 +16,7 @@ class SdHrResumeRecords(models.Model):
     languages = fields.Text(compute='language_list', )
     language_names = fields.Text(compute='language_list', )
     language_skills = fields.Text(compute='language_list', )
+    document_list = fields.Html(compute='language_list', )
     # department_id = fields.Many2one('hr.department', compute='_department_id', store=True)
     project = fields.Many2one(related='employee_id.project')
     work_location_id = fields.Many2one(related='employee_id.work_location_id')
@@ -44,6 +45,8 @@ class SdHrResumeRecords(models.Model):
             langu = ''
             langu_name = ''
             langu_skill = ''
+            document_list = ''
+            hr_documents = self.env['sd_hr_documents.attachments']
             for skill in rec.employee_id.employee_skill_ids:
                 if skill.skill_type_id.name == 'Language':
                     langu += f"{skill.skill_id.name:<20}{skill.skill_level_id.name}\n"
@@ -54,6 +57,17 @@ class SdHrResumeRecords(models.Model):
             rec.languages = langu
             rec.language_names = langu_name
             rec.language_skills = langu_skill
+
+            documents = hr_documents.search([('employee_id', '=', rec.employee_id.id), ('resume_document', '=', True)])
+            document_list = ''
+            for document in documents:
+                document_list += f"<div class='h6'>{document.document_type.name}: </div>"
+                for att in document.attachments:
+                    document_list += (f"<div class='ms-5'>{att.name}</div>")
+                document_list += f"<div class='my-2 border'></div>"
+
+
+            rec.document_list = document_list
 
     def generate_and_download(self,):
         context = self.env.context

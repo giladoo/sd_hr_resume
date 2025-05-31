@@ -10,9 +10,9 @@
                     <button string="Rsume C" class="btn text-danger" name="generate_and_download"
                             context="{'model_name': 'sd_hr_resume.records', 'variable_no': '0010', 'active_ids': [id], 'output_type': 'pdf', 'file_prefix': 'IPAC_CV', 'file_name': ['name_cv', 'job_title']}"
                             type="object"  icon="fa-file-pdf-o"/>
-                    <button string="Rsume C + Att" class="btn text-danger" name="generate_and_download"
+                    <button string="Rsume C + Att" class="btn text-info" name="generate_and_download"
                             context="{'model_name': 'sd_hr_resume.records', 'variable_no': '0010', 'active_ids': [id], 'output_type': 'pdf', 'file_prefix': 'IPAC_CV', 'file_name': ['name_cv', 'job_title'], 'attach_docs': True}"
-                            type="object"  icon="fa-file-pdf-o"/>
+                            type="object" icon="fa-file-zip-o"  />
                     <button string="Rsume BW" class="btn" name="generate_and_download"
                             context="{'model_name': 'sd_hr_resume.records', 'variable_no': '0011', 'active_ids': [id], 'output_type': 'pdf', 'file_prefix': 'IPAC_CV', 'file_name': ['name_cv', 'job_title']}"
                             type="object"  icon="fa-file-pdf-o"/>
@@ -23,13 +23,14 @@
                         <group>
                             <field name="employee_id" readonly="1" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
                             <field name="name_cv"/>
+                            <field name="job_title"/>
                         </group>
                         <group>
-                            <field name="job_title"/>
                             <field name="department_id" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
                             <field name="project" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
                             <field name="work_location_id" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
                             <field name="languages"/>
+                            <field name="document_list"/>
                         </group>
                     </group>
                     <div class="border my-2"></div>
@@ -71,9 +72,9 @@
                     <button string="Rsume C" class="btn text-danger" name="generate_and_download"
                             context="{'model_name': 'sd_hr_resume.records', 'variable_no': '0010', 'output_type': 'pdf', 'file_prefix': 'IPAC_CV', 'file_name': ['name_cv', 'job_title']}"
                             type="object"  icon="fa-file-pdf-o"/>
-                    <button string="Rsume C + Att" class="btn text-danger" name="generate_and_download"
+                    <button string="Rsume C + Att" class="btn text-info" name="generate_and_download"
                             context="{'model_name': 'sd_hr_resume.records', 'variable_no': '0010', 'output_type': 'pdf', 'file_prefix': 'IPAC_CV', 'file_name': ['name_cv', 'job_title'], 'attach_docs': True}"
-                            type="object"  icon="fa-file-pdf-o"/>
+                            type="object"  icon="fa-file-zip-o"/>
                     <button string="Rsume BW" class="btn btn-outline-dark" name="generate_and_download"
                             context="{'model_name': 'sd_hr_resume.records', 'variable_no': '0011', 'output_type': 'pdf', 'file_prefix': 'IPAC_CV', 'file_name': ['name_cv', 'job_title']}"
                             type="object"  icon="fa-file-pdf-o"/>
