@@ -46,27 +46,25 @@ class SdHrResumeRecords(models.Model):
             langu_name = ''
             langu_skill = ''
             document_list = ''
-            hr_documents = self.env['sd_hr_documents.attachments']
-            for skill in rec.employee_id.employee_skill_ids:
-                if skill.skill_type_id.name == 'Language':
-                    langu += f"{skill.skill_id.name:<20}{skill.skill_level_id.name}\n"
-                    langu_name += f"{skill.skill_id.name}\n"
-                    langu_skill += f"{skill.skill_level_id.name}\n"
+            # hr_documents = self.env['sd_hr_documents.attachments']
+            # for skill in rec.employee_id.employee_skill_ids:
+            #     if skill.skill_type_id.name == 'Language':
+            #         langu += f"{skill.skill_id.name:<20}{skill.skill_level_id.name}\n"
+            #         langu_name += f"{skill.skill_id.name}\n"
+            #         langu_skill += f"{skill.skill_level_id.name}\n"
 
 
             rec.languages = langu
             rec.language_names = langu_name
             rec.language_skills = langu_skill
 
-            documents = hr_documents.search([('employee_id', '=', rec.employee_id.id), ('resume_document', '=', True)])
+            # documents = hr_documents.sudo().search([('employee_id', '=', rec.employee_id.id), ('resume_document', '=', True)])
             document_list = ''
-            for document in documents:
-                document_list += f"<div class='h6'>{document.document_type.name}: </div>"
-                for att in document.attachments:
-                    document_list += (f"<div class='ms-5'>{att.name}</div>")
-                document_list += f"<div class='my-2 border'></div>"
-
-
+            # for document in documents:
+            #     document_list += f"<div class='h6'>{document.document_type.name}: </div>"
+            #     for att in document.attachments:
+            #         document_list += (f"<div class='ms-5'>{att.name}</div>")
+            #     document_list += f"<div class='my-2 border'></div>"
             rec.document_list = document_list
 
     def generate_and_download(self,):
