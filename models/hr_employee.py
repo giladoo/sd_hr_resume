@@ -6,6 +6,8 @@ import logging
 class SdHrresumeEmployee(models.Model):
     _inherit = 'hr.employee'
 
+
+
     def _get_report_resume_filename(self, model_name):
         self.ensure_one()
         if model_name == 'sd_hr_resume.records':

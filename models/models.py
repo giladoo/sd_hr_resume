@@ -29,6 +29,11 @@ class SdHrResumeRecords(models.Model):
     trainings = fields.Text(translate=True)
     awards = fields.Text(translate=True)
 
+    job_title_en = fields.Char(compute="_job_title_en")
+
+    def _job_title_en(self):
+        for rec in self:
+            rec.job_title_en = rec.with_context(lang='en_US').job_title
     # document_ids = fields.One2many(related='employee_id.document_ids',  domain=[('employee_id', '=', False)])
     # document_ids = fields.One2many('sd_hr_documents.attachments', 'employee_id', )
     # document_ids = fields.Many2many('sd_hr_documents.attachments',  )

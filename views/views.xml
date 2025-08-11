@@ -24,6 +24,7 @@
                             <field name="employee_id" readonly="1" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
                             <field name="name_cv"/>
                             <field name="job_title"/>
+                            <field name="job_title_en" />
                         </group>
                         <group>
                             <field name="department_id" options="{'no_edit': True, 'no_create': True, 'no_open': True}"/>
