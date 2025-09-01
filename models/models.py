@@ -18,7 +18,9 @@ class SdHrResumeRecords(models.Model):
     language_skills = fields.Text(compute='language_list', )
     document_list = fields.Html(compute='language_list', )
     # department_id = fields.Many2one('hr.department', compute='_department_id', store=True)
-    project = fields.Many2one(related='employee_id.project')
+
+    # project = fields.Many2one(related='employee_id.project')
+
     work_location_id = fields.Many2one(related='employee_id.work_location_id')
     education = fields.Text(translate=True)
     experience = fields.Text(translate=True)

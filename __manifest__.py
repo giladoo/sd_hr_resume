@@ -11,15 +11,15 @@
     'installable': True,
     'auto_install': False,
     'application': False,
-    'depends': ['base', 'hr', 'sd_hr', 'sd_projects', 'sd_hr_documents'],
+    'depends': ['base', 'hr', 'sd_hr', 'sd_projects', 'sd_hr_documents', 'hr_extend'],
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
+        'views/sd_hr_documents.xml',
         'views/hr_employee_views.xml',
         'report/resume_en.xml',
         'report/resume_en_template.xml',
-        # 'data/document_type_data.xml',
     ],
 'assets': {
         'web.assets_backend':[

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+        <record id="document_attachments_view_form_inherited" model="ir.ui.view">
+        <field name="name">sd_hr_documents.attachments</field>
+        <field name="model">sd_hr_documents.attachments</field>
+        <field name="inherit_id" ref="sd_hr_documents.document_attachments_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='attachments']" position="before">
+                <field name="resume_document" widget="boolean_toggle"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+
+</odoo>
