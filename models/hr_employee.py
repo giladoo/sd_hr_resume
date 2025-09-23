@@ -6,6 +6,8 @@ import logging
 class SdHrresumeEmployee(models.Model):
     _inherit = 'hr.employee'
 
+    sd_hr_resume_id = fields.Many2one("sd_hr_resume.records")
+
 
 
     def _get_report_resume_filename(self, model_name):
@@ -39,12 +41,19 @@ class SdHrresumeEmployee(models.Model):
             resume.trainings = rec.resume_trainings
             resume.awards = rec.resume_awards
 
+    def update_resume_id(self):
+        records = self.env['sd_hr_resume.records'].search([])
+        for rec in records:
+            rec.employee_id.sd_hr_resume_id = rec.id
+
+
     def open_resume_record(self):
         context = self.env.context
         # print(f"\n >>>>>> context: {context} \n {self}")
         res_id = self.env['sd_hr_resume.records'].search([('employee_id', '=', self.id)])
         if len(res_id) == 0:
             res_id = self.env['sd_hr_resume.records'].create({'employee_id': self.id})
+            self.sd_hr_resume_id = res_id
         return {
             'type': 'ir.actions.act_window',
             'target': 'new',

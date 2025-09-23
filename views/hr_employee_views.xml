@@ -11,6 +11,7 @@
 <!--                    <field name="resume_extend" readonly="1" invisible="1"/>-->
                     <button string="Resume" name="open_resume_record" type="object"
                             class="btn btn-primary" context="{'default_employee_id': id}"></button>
+
 <!--                    <field name="resume_education"/>-->
 <!--                    <field name="resume_experience"/>-->
 <!--                    <field name="resume_projects"/>-->
@@ -34,12 +35,28 @@
 
                     <button string="Resume" name="update_resume"
                             class="btn btn-danger mx-2" type="object" groups="base.group_system"/>
+                    <button string="update_resume_id" name="update_resume_id" type="object"
+                            class="btn btn-primary" ></button>
                 </header>
             </xpath>
 
 <!--            <xpath expr="//page[@name='skills_resume']" position="inside">-->
 
 <!--            </xpath>-->
+        </field>
+    </record>
+       <record id="hr_view_employee_filter_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.search</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr=".">
+                <field name="sd_hr_resume_id" />
+<!--                <filter name="has_resume" string="has_resume" context="{'group_by': 'sd_hr_resume_id'}"/>-->
+                <filter name="has_resume" string="Without Resume" domain="[('sd_hr_resume_id', '=', False)]"/>
+
+
+            </xpath>
         </field>
     </record>
 
