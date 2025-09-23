@@ -32,31 +32,24 @@
             <xpath expr=".">
                 <header>
 
-                    <button string="Resume" name="update_resume"
-                            class="btn btn-danger mx-2" type="object" groups="base.group_system"/>
+<!--                    <button string="Resume" name="update_resume"-->
+<!--                            class="btn btn-danger mx-2" type="object" groups="base.group_system"/>-->
                 </header>
             </xpath>
 
-<!--            <xpath expr="//page[@name='skills_resume']" position="inside">-->
-
-<!--            </xpath>-->
         </field>
     </record>
 
-
-
-<!--    <record id="view_employee_form" model="ir.ui.view">-->
-<!--        <field name="name">hr.employee.view.form.inherit.sd_hr_resume</field>-->
-<!--        <field name="model">hr.employee</field>-->
-<!--        <field name="inherit_id" ref="hr.view_employee_form"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <div class="oe_button_box" position="inside">-->
-<!--                <button class="oe_stat_button" name="action_document_view"-->
-<!--                        type="object" icon="fa-list-ol">-->
-<!--                    <field string="resume" name="document_count" widget="statinfo"/>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </field>-->
-<!--    </record>-->
+    <record id="hr_view_employee_filter_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.search</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr=".">
+                <field name="sd_hr_resume_id" />
+                <filter name="has_resume" string="Without Resume" domain="[('sd_hr_resume_id', '=', False)]"/>
+            </xpath>
+        </field>
+    </record>
 
 </odoo>

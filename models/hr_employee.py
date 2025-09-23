@@ -6,6 +6,8 @@ import logging
 class SdHrresumeEmployee(models.Model):
     _inherit = 'hr.employee'
 
+    sd_hr_resume_id = fields.Many2one("sd_hr_resume.records")
+
     def _get_report_resume_filename(self, model_name):
         self.ensure_one()
         if model_name == 'sd_hr_resume.records':
@@ -43,10 +45,14 @@ class SdHrresumeEmployee(models.Model):
         res_id = self.env['sd_hr_resume.records'].search([('employee_id', '=', self.id)])
         if len(res_id) == 0:
             res_id = self.env['sd_hr_resume.records'].create({'employee_id': self.id})
+
+        if not self.sd_hr_resume_id:
+            self.sd_hr_resume_id = res_id
+
         return {
             'type': 'ir.actions.act_window',
             'target': 'new',
-            'name': _('Uninstall module'),
+            'name': _('Resume'),
             'res_id': res_id.id,
             'view_mode': 'form',
             'res_model': 'sd_hr_resume.records',
