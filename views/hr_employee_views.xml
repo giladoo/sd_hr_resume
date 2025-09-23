@@ -35,8 +35,8 @@
 
                     <button string="Resume" name="update_resume"
                             class="btn btn-danger mx-2" type="object" groups="base.group_system"/>
-                    <button string="update_resume_id" name="update_resume_id" type="object"
-                            class="btn btn-primary" ></button>
+<!--                    <button string="update_resume_id" name="update_resume_id" type="object"-->
+<!--                            class="btn btn-primary" ></button>-->
                 </header>
             </xpath>
 
